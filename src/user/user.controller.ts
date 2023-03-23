@@ -7,9 +7,8 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
+import { UserBody } from './entities/user.entity';
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('user')
 export class UserController {
@@ -18,13 +17,13 @@ export class UserController {
   @Post()
 
   // ajustar rota de login
-  login(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  login(@Body() body: UserBody) {
+    return this.userService.create(body);
   }
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  create(@Body() body: UserBody) {
+    return this.userService.create(body);
   }
 
   @Get()
@@ -34,16 +33,16 @@ export class UserController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+    return this.userService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+  update(@Param('id') id: string, @Body() body: UserBody) {
+    return this.userService.update(id, body);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+    return this.userService.remove(id);
   }
 }
