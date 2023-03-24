@@ -3,15 +3,18 @@ import { AuthModule } from './auth/auth.module';
 import { BookModule } from './book/book.module';
 import { UserModule } from './user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
+import configuration from './config/configuration';
 
 @Module({
   imports: [
     AuthModule,
     BookModule,
+    ConfigModule.forRoot({
+      load: [configuration],
+    }),
     UserModule,
-    MongooseModule.forRoot(
-      'mongodb+srv://admin:gVfcS9imF7WpCui9@listalivros.zyzp4jq.mongodb.net/lista_livros?retryWrites=true&w=majority',
-    ),
+    MongooseModule.forRoot(process.env.DB_MONGO),
   ],
 })
 export class AppModule {}

@@ -9,14 +9,13 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from 'src/user/entities/user.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategies/jwt.strategy';
-import { jwtConstants } from './constants';
 
 @Module({
   imports: [
     UserModule,
     PassportModule,
     JwtModule.register({
-      secret: jwtConstants.secret,
+      secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1d' },
     }),
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),

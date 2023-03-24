@@ -68,3 +68,25 @@ export class RentBookQuery {
   @IsOptional()
   rentedBy: string;
 }
+
+export class BookFilterQuery {
+  @IsOptional()
+  @IsString({
+    message: 'o campo name deve ser uma string',
+  })
+  name: string;
+
+  @IsString({ message: 'o campo year deve ser uma string decimal' })
+  @IsOptional()
+  year: string;
+
+  @IsString({
+    message: 'o campo author deve ser uma string',
+  })
+  @IsOptional()
+  author: string;
+
+  @IsString({ message: 'o campo pagesNumber deve ser uma string decimal' })
+  @IsOptional()
+  pagesNumber: string;
+}

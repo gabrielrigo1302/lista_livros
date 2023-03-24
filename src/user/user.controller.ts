@@ -3,7 +3,7 @@ import {
   Get,
   Post,
   Body,
-  Patch,
+  Put,
   Param,
   Delete,
   UseGuards,
@@ -41,9 +41,15 @@ export class UserController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Patch(':id')
+  @Put(':id')
   async update(@Param('id') id: string, @Body() body: UserBody) {
-    return await this.userService.update(id, body);
+    const hashedPassword = await bcrypt.hash(body.password, 10);
+    const updatedBody: UserBody = {
+      ...body,
+      password: hashedPassword,
+    };
+
+    return await this.userService.update(id, updatedBody);
   }
 
   @UseGuards(JwtAuthGuard)

@@ -2,7 +2,7 @@ import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserBody } from './entities/user.entity';
-import { errorMessage } from '../utils/errors';
+import { errorMessage, NotFoundError } from '../utils/utils';
 
 @Injectable()
 export class UserService {
@@ -32,12 +32,14 @@ export class UserService {
     try {
       const response = await this.userModel.findById(id).exec();
 
-      if (!response) {
-        throw errorMessage(HttpStatus.NOT_FOUND, 'Objeto não encontrado');
-      }
+      if (!response) throw new NotFoundError();
 
       return response;
     } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND) {
+        throw errorMessage(error.status, error.message);
+      }
+
       throw errorMessage(HttpStatus.INTERNAL_SERVER_ERROR, 'Erro interno');
     }
   }
@@ -50,12 +52,14 @@ export class UserService {
         })
         .exec();
 
-      if (!response) {
-        throw errorMessage(HttpStatus.NOT_FOUND, 'Objeto não encontrado');
-      }
+      if (!response) throw new NotFoundError();
 
       return response;
     } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND) {
+        throw errorMessage(error.status, error.message);
+      }
+
       throw errorMessage(HttpStatus.INTERNAL_SERVER_ERROR, 'Erro interno');
     }
   }
@@ -64,8 +68,13 @@ export class UserService {
     try {
       await this.findOne(id);
       await this.userModel.updateOne({ _id: id }, body).exec();
+
       return this.findOne(id);
     } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND) {
+        throw errorMessage(error.status, error.message);
+      }
+
       throw errorMessage(HttpStatus.INTERNAL_SERVER_ERROR, 'Erro interno');
     }
   }
@@ -74,8 +83,13 @@ export class UserService {
     try {
       await this.findOne(id);
       await this.userModel.deleteOne({ _id: id }).exec();
+
       return this.findOne(id);
     } catch (error) {
+      if (error.status === HttpStatus.NOT_FOUND) {
+        throw errorMessage(error.status, error.message);
+      }
+
       throw errorMessage(HttpStatus.INTERNAL_SERVER_ERROR, 'Erro interno');
     }
   }
