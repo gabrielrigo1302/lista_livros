@@ -1,5 +1,5 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { IsEmail, IsString } from 'class-validator';
+import { IsString } from 'class-validator';
 import mongoose from 'mongoose';
 
 export const UserSchema = new mongoose.Schema({
@@ -7,14 +7,14 @@ export const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  birth: {
-    type: String,
-    required: true,
-  },
-  email: {
+  username: {
     type: String,
     required: true,
     unique: true,
+  },
+  birth: {
+    type: String,
+    required: true,
   },
   password: {
     type: String,
@@ -33,13 +33,10 @@ export class UserBody {
   })
   birth: string;
 
-  @IsEmail(
-    {},
-    {
-      message: 'o campo email deve ser uma string com formatação de email',
-    },
-  )
-  email: string;
+  @IsString({
+    message: 'o campo username deve ser uma string',
+  })
+  username: string;
 
   @IsString({
     message: 'o campo password deve ser uma string',

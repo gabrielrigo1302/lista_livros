@@ -1,7 +1,8 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserBody } from './entities/user.entity';
+import { errorMessage } from '../utils/errors';
 
 @Injectable()
 export class UserService {
@@ -12,23 +13,10 @@ export class UserService {
       const result = await new this.userModel(body).save();
       return result.id;
     } catch (error) {
-      if (error.code === 1100) {
-        throw new HttpException(
-          {
-            error: HttpStatus.CONFLICT,
-            message: 'Email já existe',
-          },
-          HttpStatus.CONFLICT,
-        );
-      }
+      if (error.code === 11000)
+        throw errorMessage(HttpStatus.CONFLICT, 'Username já cadastrado');
 
-      throw new HttpException(
-        {
-          error: HttpStatus.INTERNAL_SERVER_ERROR,
-          message: 'Erro interno',
-        },
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+      throw errorMessage(HttpStatus.INTERNAL_SERVER_ERROR, 'Erro interno');
     }
   }
 
@@ -36,13 +24,7 @@ export class UserService {
     try {
       return await this.userModel.find().exec();
     } catch (error) {
-      throw new HttpException(
-        {
-          error: HttpStatus.INTERNAL_SERVER_ERROR,
-          message: 'Erro interno',
-        },
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+      throw errorMessage(HttpStatus.INTERNAL_SERVER_ERROR, 'Erro interno');
     }
   }
 
@@ -50,37 +32,51 @@ export class UserService {
     try {
       const response = await this.userModel.findById(id).exec();
 
-      if (response) {
-        throw new HttpException(
-          {
-            error: HttpStatus.INTERNAL_SERVER_ERROR,
-            message: 'Erro interno',
-          },
-          HttpStatus.INTERNAL_SERVER_ERROR,
-        );
+      if (!response) {
+        throw errorMessage(HttpStatus.NOT_FOUND, 'Objeto não encontrado');
       }
 
       return response;
     } catch (error) {
-      console.log('error --- ', error);
+      throw errorMessage(HttpStatus.INTERNAL_SERVER_ERROR, 'Erro interno');
+    }
+  }
+
+  async findOneByUsername(username: string) {
+    try {
+      const response = await this.userModel
+        .findOne({
+          username,
+        })
+        .exec();
+
+      if (!response) {
+        throw errorMessage(HttpStatus.NOT_FOUND, 'Objeto não encontrado');
+      }
+
+      return response;
+    } catch (error) {
+      throw errorMessage(HttpStatus.INTERNAL_SERVER_ERROR, 'Erro interno');
     }
   }
 
   async update(id: string, body: UserBody) {
-    const user: User = await this.findOne(id);
-
-    if (!user) return null;
-
-    await this.userModel.updateOne({ _id: id }, body).exec();
-    return this.findOne(id);
+    try {
+      await this.findOne(id);
+      await this.userModel.updateOne({ _id: id }, body).exec();
+      return this.findOne(id);
+    } catch (error) {
+      throw errorMessage(HttpStatus.INTERNAL_SERVER_ERROR, 'Erro interno');
+    }
   }
 
   async remove(id: string) {
-    const user: User = await this.findOne(id);
-
-    if (!user) return null;
-
-    await this.userModel.deleteOne({ _id: id }).exec();
-    return this.findOne(id);
+    try {
+      await this.findOne(id);
+      await this.userModel.deleteOne({ _id: id }).exec();
+      return this.findOne(id);
+    } catch (error) {
+      throw errorMessage(HttpStatus.INTERNAL_SERVER_ERROR, 'Erro interno');
+    }
   }
 }
