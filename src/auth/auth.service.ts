@@ -1,6 +1,6 @@
 import { Injectable, HttpStatus } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { errorMessage } from 'src/utils/utils';
+import { errorMessage } from '../utils/utils';
 import { UserService } from '../user/user.service';
 import * as bcrypt from 'bcrypt';
 
