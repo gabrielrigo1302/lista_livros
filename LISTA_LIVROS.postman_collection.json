@@ -1,0 +1,437 @@
+{
+	"info": {
+		"_postman_id": "d874afd9-a9fb-44f5-b763-7db4da162093",
+		"name": "LISTA_LIVROS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6800115"
+	},
+	"item": [
+		{
+			"name": "BOOKS",
+			"item": [
+				{
+					"name": "GET_BY_ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlQGJjcnlwdDIuY29tIiwic3ViIjoiNjQxZDBmYTUzZjhmY2IyMDY0NDA4YjA3IiwiaWF0IjoxNjc5NzA1NjkxLCJleHAiOjE2Nzk3OTIwOTF9.qdFJfao3FID0Q1mwm1SVPBqng4QMNJCqOD9k8iKQKDA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/book/641dc07635e64a9d769d51b7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"book",
+								"641dc07635e64a9d769d51b7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_ALL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlQGJjcnlwdDIuY29tIiwic3ViIjoiNjQxZDBmYTUzZjhmY2IyMDY0NDA4YjA3IiwiaWF0IjoxNjc5NzA1NjkxLCJleHAiOjE2Nzk3OTIwOTF9.qdFJfao3FID0Q1mwm1SVPBqng4QMNJCqOD9k8iKQKDA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/book?author=TS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"book"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "teste Update",
+									"disabled": true
+								},
+								{
+									"key": "pagesNumber",
+									"value": "29",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "TS"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlQGJjcnlwdDIuY29tIiwic3ViIjoiNjQxZDBmYTUzZjhmY2IyMDY0NDA4YjA3IiwiaWF0IjoxNjc5NzA1NjkxLCJleHAiOjE2Nzk3OTIwOTF9.qdFJfao3FID0Q1mwm1SVPBqng4QMNJCqOD9k8iKQKDA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Book ERS\",\r\n  \"year\": 2020,\r\n  \"author\": \"TS\",\r\n  \"pagesNumber\": 29\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/book",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlQGJjcnlwdDIuY29tIiwic3ViIjoiNjQxZDBmYTUzZjhmY2IyMDY0NDA4YjA3IiwiaWF0IjoxNjc5NzA1NjkxLCJleHAiOjE2Nzk3OTIwOTF9.qdFJfao3FID0Q1mwm1SVPBqng4QMNJCqOD9k8iKQKDA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Book a\",\r\n    \"year\": 2020,\r\n    \"author\": \"TS\",\r\n    \"pagesNumber\": 28\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/book/641dc07635e64a9d769d51b7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"book",
+								"641dc07635e64a9d769d51b7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RENT",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlQGJjcnlwdDIuY29tIiwic3ViIjoiNjQxZDBmYTUzZjhmY2IyMDY0NDA4YjA3IiwiaWF0IjoxNjc5NzA1NjkxLCJleHAiOjE2Nzk3OTIwOTF9.qdFJfao3FID0Q1mwm1SVPBqng4QMNJCqOD9k8iKQKDA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/book/rent/641e4839860a0ab8587bf020?rentedBy=a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"book",
+								"rent",
+								"641e4839860a0ab8587bf020"
+							],
+							"query": [
+								{
+									"key": "rentedBy",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlQGJjcnlwdDIuY29tIiwic3ViIjoiNjQxZDBmYTUzZjhmY2IyMDY0NDA4YjA3IiwiaWF0IjoxNjc5NzA1NjkxLCJleHAiOjE2Nzk3OTIwOTF9.qdFJfao3FID0Q1mwm1SVPBqng4QMNJCqOD9k8iKQKDA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/book/641e4727860a0ab8587bf00c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"book",
+								"641e4727860a0ab8587bf00c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "USERS",
+			"item": [
+				{
+					"name": "GET_BY_ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlQGJjcnlwdDIuY29tIiwic3ViIjoiNjQxZDBmYTUzZjhmY2IyMDY0NDA4YjA3IiwiaWF0IjoxNjc5NjM3NzEwLCJleHAiOjE2Nzk3MjQxMTB9.R_s3ItGglEkwC8MOGFLlwLZFL8PaXyEEY2hKkru6POE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user/641d0bbf9322e4643148cc59",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"641d0bbf9322e4643148cc59"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_ALL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlQGJjcnlwdDIuY29tIiwic3ViIjoiNjQxZDBmYTUzZjhmY2IyMDY0NDA4YjA3IiwiaWF0IjoxNjc5NjM3NzEwLCJleHAiOjE2Nzk3MjQxMTB9.R_s3ItGglEkwC8MOGFLlwLZFL8PaXyEEY2hKkru6POE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlQHRlc3RlLmNvbSIsInN1YiI6IjY0MWNiNGM2OGFlZTc2NWE4MTFkNTM5OSIsImlhdCI6MTY3OTYwNjI2MCwiZXhwIjoxNjc5NjA2MzIwfQ.J7amD16suLvkxeUaV6wjTmfvhhmQ437U6_j_y-Dar_w",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"teste senha\",\r\n  \"birth\": \"2000\",\r\n  \"username\": \"teste@bcrypt2.com\",\r\n  \"password\": \"12345\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlQGJjcnlwdDIuY29tIiwic3ViIjoiNjQxZDBmYTUzZjhmY2IyMDY0NDA4YjA3IiwiaWF0IjoxNjc5NzA1NjkxLCJleHAiOjE2Nzk3OTIwOTF9.qdFJfao3FID0Q1mwm1SVPBqng4QMNJCqOD9k8iKQKDA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"teste UPDATE\",\r\n    \"username\": \"teste@teste.com\",\r\n    \"birth\": \"2000\",\r\n    \"password\": \"1234\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/641cb4c68aee765a811d5399",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"641cb4c68aee765a811d5399"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlQGJjcnlwdDIuY29tIiwic3ViIjoiNjQxZDBmYTUzZjhmY2IyMDY0NDA4YjA3IiwiaWF0IjoxNjc5NjM3NzEwLCJleHAiOjE2Nzk3MjQxMTB9.R_s3ItGglEkwC8MOGFLlwLZFL8PaXyEEY2hKkru6POE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user/641b0598c95bf4226534d559",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"641b0598c95bf4226534d559"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LOGIN",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlQHRlc3RlLmNvbSIsInN1YiI6IjY0MWNiNGM2OGFlZTc2NWE4MTFkNTM5OSIsImlhdCI6MTY3OTYwNzYwMSwiZXhwIjoxNjc5NjA3NjYxfQ.bBjDODO5_ezpAGUGh7XKry5XTAFXQ4N-71jiUwRBtrs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"teste@bcrypt2.com\",\r\n  \"password\": \"12345\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
