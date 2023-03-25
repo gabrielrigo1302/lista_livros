@@ -9,11 +9,16 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from '../user/entities/user.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { ConfigModule } from '@nestjs/config';
+import configuration from '../config/configuration';
 
 @Module({
   imports: [
     UserModule,
     PassportModule,
+    ConfigModule.forRoot({
+      load: [configuration],
+    }),
     JwtModule.register({
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1d' },

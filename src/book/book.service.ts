@@ -69,8 +69,11 @@ export class BookService {
       if (book.rentedBy === rentedBy) return book;
 
       const bookUpdated: BookDoc = {
-        ...book,
-        rentedBy,
+        name: book.name,
+        author: book.author,
+        pagesNumber: book.pagesNumber,
+        year: book.year,
+        rentedBy: rentedBy,
       };
 
       await this.bookModel.updateOne({ _id: id }, bookUpdated).exec();
